@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>RipCraft | Empire of Fire & Blood</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Vazirmatn:wght@400;600;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f7f1f1;--card:#fff;--card2:#f1e6e6;--text:#1c0b0c;--dim:#6e5558;--red:#d4001a;--red2:#ff2a40;--line:rgba(212,0,26,.22);--glow:rgba(212,0,26,.25);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#070304;--card:#130809;--card2:#1c0b0d;--text:#f6eaea;--dim:#b09598;--red:#e8001d;--red2:#ff3045;--line:rgba(255,48,69,.24);--glow:rgba(255,48,69,.35);color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#070304;--card:#130809;--card2:#1c0b0d;--text:#f6eaea;--dim:#b09598;--red:#e8001d;--red2:#ff3045;--line:rgba(255,48,69,.24);--glow:rgba(255,48,69,.35);color-scheme:dark}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{background:var(--bg);color:var(--text);font-family:Vazirmatn,Tahoma,sans-serif;line-height:1.9;overflow-x:hidden;transition:background .3s,color .3s}
+a{color:inherit;text-decoration:none}button{font-family:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--red2);outline-offset:3px}
+.px{font-family:'Press Start 2P',monospace;direction:ltr}
+#stars{position:fixed;inset:0;z-index:0;pointer-events:none}
+header,section,footer{position:relative;z-index:2}
+header{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:calc(12px + env(safe-area-inset-top,0px)) 6% 12px;background:color-mix(in srgb,var(--bg) 80%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);transition:background .3s,border-color .3s}
+.lg{font-size:20px;white-space:nowrap;display:flex;align-items:center;gap:10px}.lg i{font-style:normal;color:var(--red2);text-shadow:0 0 14px var(--glow)}.lg b{color:var(--text)}
+.lgimg{height:38px;width:38px;border-radius:10px;object-fit:cover;border:1px solid var(--red2);box-shadow:0 0 18px var(--glow);transition:border-color .3s,box-shadow .3s}
+nav{display:flex;gap:28px;font-weight:700;font-size:15px;color:var(--dim)}nav a{position:relative;padding:4px 0;transition:color .2s}nav a:hover{color:var(--red2)}
+nav a::after{content:"";position:absolute;bottom:-4px;right:0;width:0;height:2px;background:var(--red2);border-radius:2px;transition:width .3s}
+nav a:hover::after{width:100%}
+.th{width:40px;height:40px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--text);font-size:18px;transition:.2s;display:grid;place-items:center}
+.th:hover{border-color:var(--red2);box-shadow:0 0 16px var(--glow)}
+.burger{display:none;flex-direction:column;justify-content:center;align-items:center;gap:5px;width:42px;height:42px;border-radius:10px;border:1px solid var(--line);background:var(--card);transition:.2s;z-index:60}
+.burger span{display:block;width:20px;height:2px;background:var(--text);border-radius:2px;transition:.3s}
+.burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.burger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.burger:hover{border-color:var(--red2);box-shadow:0 0 16px var(--glow)}
+.mobile-menu{display:none;position:fixed;top:0;right:-100%;width:min(80vw,320px);height:100vh;z-index:55;background:color-mix(in srgb,var(--bg) 96%,transparent);backdrop-filter:blur(20px);border-left:1px solid var(--line);padding:100px 30px 30px;flex-direction:column;gap:8px;transition:right .4s cubic-bezier(.22,1,.36,1)}
+.mobile-menu.open{right:0;display:flex}
+.mobile-menu a{padding:14px 18px;border-radius:12px;font-weight:800;font-size:17px;color:var(--dim);border:1px solid transparent;transition:.2s}
+.mobile-menu a:hover,.mobile-menu a:active{color:var(--red2);background:var(--card);border-color:var(--line)}
+.overlay{display:none;position:fixed;inset:0;z-index:54;background:rgba(0,0,0,.6);backdrop-filter:blur(4px);opacity:0;transition:opacity .4s}
+.overlay.open{display:block;opacity:1}
+@media(max-width:860px){nav{display:none}.burger{display:flex}}
+
+.hero{min-height:100svh;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:30px;padding:120px 6% 70px;color:var(--text);background:radial-gradient(ellipse 60% 55% at 75% 30%,var(--glow),transparent 65%),var(--bg);overflow:hidden;transition:background .3s,color .3s}
+.hero h1{font-size:clamp(34px,5.6vw,68px);font-weight:900;line-height:1.45;animation:up .9s both}
+.hero h1 em{font-style:normal;color:var(--red2);text-shadow:0 0 30px var(--glow)}
+.hero p.s{margin-top:14px;color:var(--dim);max-width:520px;font-size:17px;animation:up .9s .15s both}
+.card-ip{margin-top:28px;max-width:470px;padding:22px;border:1px solid var(--line);border-radius:18px;background:var(--card);animation:up .9s .3s both;transition:background .3s,border-color .3s}
+.on{display:flex;align-items:center;gap:10px;font-weight:800;margin-bottom:14px}
+.dot{width:10px;height:10px;border-radius:50%;background:#18d46c;box-shadow:0 0 12px #18d46c;animation:bl 1.6s infinite}
+.on b{color:var(--red2);font-size:22px}
+.ipb{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 16px;border-radius:12px;background:var(--card2);border:1px solid var(--line);direction:ltr;transition:background .3s,border-color .3s}
+.ipb .px{font-size:12px;color:var(--text);word-break:break-all}
+.ipb button{background:var(--red);color:#fff;border:0;border-radius:8px;padding:6px 14px;font-weight:800;font-size:13px;transition:background .2s}
+.ipb button:hover{background:var(--red2)}
+@keyframes up{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+@keyframes bl{50%{opacity:.35}}@keyframes flt{50%{transform:translateY(-8px)}}
+
+/* Static logo showcase */
+.logo-showcase{position:relative;width:min(380px,80vw);aspect-ratio:1;margin:auto;display:grid;place-items:center}
+.logo-showcase::before{content:"";position:absolute;inset:0;border-radius:50%;border:1px solid var(--line);box-shadow:0 0 70px var(--glow),inset 0 0 70px var(--glow);transition:border-color .3s,box-shadow .3s}
+.logo-showcase::after{content:"";position:absolute;inset:14%;border:1px dashed var(--line);border-radius:50%;transition:border-color .3s}
+.logo-core{position:relative;width:46%;aspect-ratio:1;border-radius:50%;overflow:hidden;border:2px solid var(--red2);box-shadow:0 0 60px var(--red);animation:flt 5s ease-in-out infinite;z-index:2;background:var(--card2)}
+.logo-core img{width:100%;height:100%;object-fit:cover;display:block}
+.logo-core .fallback{display:grid;place-items:center;width:100%;height:100%;font-family:'Press Start 2P',monospace;font-size:20px;color:#fff;background:radial-gradient(circle,var(--red),#3a0007);text-shadow:0 0 20px var(--red)}
+
+.wrap{max-width:1140px;margin:auto;padding:90px 6%}
+.pill{display:table;margin:0 auto 16px;padding:5px 22px;border-radius:99px;border:1px solid var(--red2);color:var(--red2);font-weight:800;font-size:14px;background:var(--card);transition:background .3s}
+.hd{text-align:center;margin-bottom:50px}.hd h2{font-size:clamp(28px,4.6vw,46px);font-weight:900}.hd p{color:var(--dim);margin-top:8px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px}
+.st{padding:30px 18px;text-align:center;background:var(--card);border:1px solid var(--line);border-radius:18px;transition:.25s}
+.st:hover{border-color:var(--red2);box-shadow:0 12px 36px var(--glow);transform:translateY(-5px)}
+.st .i{width:46px;height:46px;margin:0 auto 12px;border-radius:50%;display:grid;place-items:center;background:var(--card2);font-size:20px;transition:background .3s}
+.st b{display:block;font-size:30px;font-weight:900;direction:ltr}.st span{color:var(--dim);font-size:14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:22px}
+.mode{position:relative;padding:34px 24px 24px;background:var(--card);border:1px solid var(--line);border-radius:20px;overflow:hidden;transition:.25s}
+.mode::before{content:"";position:absolute;top:0;right:0;left:0;height:4px;background:linear-gradient(270deg,var(--red2),transparent)}
+.mode:hover{transform:translateY(-8px);border-color:var(--red2);box-shadow:0 18px 46px var(--glow)}
+.mi{display:block;margin-bottom:14px}.mi img{width:56px;height:56px;border-radius:14px;object-fit:cover;border:1px solid var(--red2);box-shadow:0 0 22px var(--glow);transition:.35s}.mode:hover .mi img{transform:scale(1.15) rotate(-6deg)}
+.mode h3{font-size:24px;font-weight:900;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.bd{font-size:11px;padding:1px 10px;border-radius:99px;background:linear-gradient(135deg,var(--red),var(--red2));color:#fff;font-weight:800}
+.mode p{color:var(--dim);font-size:14px;margin:8px 0 16px;min-height:52px}
+.pl{display:flex;justify-content:space-between;padding:10px 14px;border-radius:12px;background:var(--card2);font-weight:800;font-size:14px;transition:background .3s}
+.pl b{color:var(--red2)}
+.stf{display:flex;align-items:center;gap:16px;padding:22px;background:var(--card);border:1px solid var(--line);border-radius:18px;transition:.25s}
+.stf:hover{border-color:var(--red2);box-shadow:0 12px 36px var(--glow);transform:translateY(-5px)}
+.stf canvas{width:84px;height:84px;flex:none;border-radius:12px;border:2px solid var(--red2);image-rendering:pixelated;box-shadow:0 0 20px var(--glow)}
+.stf h3{font-family:'Press Start 2P',monospace;font-size:12px;direction:ltr;text-align:right;word-break:break-all;line-height:1.8}
+.role{display:inline-block;margin:6px 0;padding:0 12px;border:1px solid var(--red2);border-radius:6px;color:var(--red2);font-size:11px;font-weight:800;direction:ltr}
+.stf p{color:var(--dim);font-size:13px;line-height:1.8}
+.rub{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px}
+.rc{display:flex;align-items:center;gap:18px;padding:26px;background:var(--card);border:1px solid var(--line);border-radius:20px;transition:.25s}
+.rc:hover{transform:translateY(-6px);border-color:var(--red2);box-shadow:0 14px 40px var(--glow)}
+.rc img{width:64px;height:64px;border-radius:16px;object-fit:cover;background:#fff;padding:6px}
+.rc b{display:block;font-size:19px}.rc span{color:var(--dim);font-size:13px}.rc code{display:block;direction:ltr;text-align:right;color:var(--red2);font-weight:800;margin-top:4px}
+.sup{display:grid;grid-template-columns:1.1fr 1fr;gap:30px;align-items:center;padding:36px;background:linear-gradient(160deg,var(--card),var(--card2));border:1px solid var(--line);border-radius:24px;transition:background .3s,border-color .3s}
+.sup h2{font-size:clamp(26px,4vw,38px);font-weight:900;margin:12px 0}.sup p{color:var(--dim)}
+.btns{display:flex;gap:12px;margin-top:22px;flex-wrap:wrap}
+.b1{padding:13px 28px;border-radius:12px;font-weight:900;color:#fff;background:linear-gradient(135deg,var(--red),var(--red2));box-shadow:0 8px 26px var(--glow);transition:.2s}.b1:hover{transform:translateY(-3px)}
+.b2{padding:13px 28px;border-radius:12px;font-weight:900;border:1px solid var(--line);transition:.2s}.b2:hover{border-color:var(--red2);color:var(--red2)}
+.art{display:grid;place-items:center;aspect-ratio:16/10;border-radius:16px;background:radial-gradient(circle at 50% 40%,var(--red),#2a0005);overflow:hidden;transition:background .3s}
+.art canvas{width:46%;image-rendering:pixelated;animation:flt 3.5s infinite;filter:drop-shadow(0 12px 22px rgba(0,0,0,.5))}
+footer{padding:36px 6% 46px;text-align:center;border-top:1px solid var(--line);color:var(--dim);font-size:13px;transition:border-color .3s}
+footer .px{display:block;font-size:12px;margin-bottom:10px;color:var(--text);letter-spacing:1px}footer i{font-style:normal;color:var(--red2)}
+.java{display:block;margin-bottom:12px;font-weight:800;color:var(--red2);font-size:14px}
+.rv{opacity:0;transform:translateY(30px);transition:opacity .7s,transform .7s}.rv.in{opacity:1;transform:none}
+@media(max-width:860px){.hero{grid-template-columns:1fr;text-align:center;padding-top:110px}.hero p.s,.card-ip{margin-inline:auto}.hero h1{margin-top:6px}.logo-showcase{order:-1;width:min(240px,60vw)}.sup{grid-template-columns:1fr;padding:22px}.btns{justify-content:center}.stf{flex-direction:row}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+.bl{position:fixed;z-index:0;width:55vmax;height:55vmax;border-radius:50%;filter:blur(90px);pointer-events:none;opacity:.35;background:radial-gradient(circle,var(--red),transparent 65%);transition:background .3s,opacity .3s}
+.bl.a{top:-20vmax;right:-15vmax;animation:dr1 18s ease-in-out infinite alternate}.bl.b{bottom:-25vmax;left:-20vmax;animation:dr2 22s ease-in-out infinite alternate;opacity:.28}
+@keyframes dr1{to{transform:translate(-18vw,22vh) scale(1.25)}}@keyframes dr2{to{transform:translate(22vw,-20vh) scale(1.2)}}
+.beam{position:fixed;left:0;right:0;height:140px;z-index:1;pointer-events:none;background:linear-gradient(transparent,var(--glow),transparent);opacity:.18;animation:sc 9s linear infinite;transition:background .3s}
+@keyframes sc{from{top:-160px}to{top:100%}}
+.emb{display:inline-grid;place-items:center;width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,var(--red),#3a0007);color:#fff;font-family:'Press Start 2P',monospace;font-size:16px;border:1px solid var(--red2);box-shadow:0 0 18px var(--glow)}
+</style>
+</head>
+<body>
+<canvas id="stars"></canvas><div class="bl a"></div><div class="bl b"></div><div class="beam"></div>
+
+<header>
+  <a href="#top" class="lg px">
+    <img class="lgimg" src="https://s6.uupload.ir/files/file_00000000d098820ab5853067dc1bc80d_1c5oy.jpg" alt="RipCraft" onerror="this.outerHTML='<span class=emb style=width:38px;height:38px;font-size:13px>R</span>'">
+    <span><i>Rip</i><b>Craft</b></span>
+  </a>
+  <nav><a href="#top">خانه</a><a href="#modes">گیم مودها</a><a href="#team">تیم</a><a href="#community">روبیکا</a><a href="#support">پشتیبانی</a></nav>
+  <div style="display:flex;align-items:center;gap:10px">
+    <button class="th" id="th" aria-label="تغییر تم">☀</button>
+    <button class="burger" id="burger" aria-label="منو"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<div class="overlay" id="overlay"></div>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#top">خانه</a>
+  <a href="#modes">گیم مودها</a>
+  <a href="#team">تیم</a>
+  <a href="#community">روبیکا</a>
+  <a href="#support">پشتیبانی</a>
+</div>
+
+<section class="hero" id="top">
+  <div>
+    <h1>شبت رو با رفقات توی <em>RipCraft</em> بساز</h1>
+    <p class="s">سرور ماینکرفت با گیم مودهای متنوع، تیم قوی و جامعه‌ای که تا پیروزی کنارته.</p>
+    <div class="card-ip">
+      <div class="on"><span class="dot"></span>بازیکنان آنلاین: <b id="online">0</b></div>
+      <div class="ipb"><span class="px" id="ipv">PLAY.RIPCRAFT.NET</span><button id="cp">کپی آدرس</button></div>
+    </div>
+  </div>
+  <div class="logo-showcase">
+    <div class="logo-core">
+      <img src="https://s6.uupload.ir/files/file_00000000d098820ab5853067dc1bc80d_1c5oy.jpg" alt="RipCraft Logo" onerror="this.outerHTML='<span class=fallback>R</span>'">
+    </div>
+  </div>
+</section>
+
+<section><div class="wrap"><div class="stats">
+  <div class="st rv"><div class="i">❤️</div><b data-to="26400">0</b><span>دنبال‌کننده‌ها</span></div>
+  <div class="st rv"><div class="i">📅</div><b data-to="1405" data-nocomma="1">0</b><span>سال شروع فعالیت</span></div>
+  <div class="st rv"><div class="i">👥</div><b data-to="250">0</b><span>رکورد همزمان</span></div>
+  <div class="st rv"><div class="i">👤</div><b data-to="25000">0</b><span>بازیکنان ثبت‌نام‌شده</span></div>
+</div></div></section>
+
+<section id="modes"><div class="wrap">
+  <div class="hd rv"><span class="pill">دنیاهای بی‌پایان</span><h2>گیم‌مودهای اختصاصی سرور</h2></div>
+  <div class="grid" id="mg"></div>
+</div></section>
+
+<section id="team"><div class="wrap">
+  <div class="hd rv"><span class="pill">معرفی پرسنل</span><h2>تیم مدیریتی RipCraft</h2></div>
+  <div class="grid" id="tg"></div>
+</div></section>
+
+<section id="community"><div class="wrap">
+  <div class="hd rv"><h2>جامعه بزرگ RipCraft</h2><p>در روبیکا به ما بپیوندید.</p></div>
+  <div class="rub">
+    <a class="rc rv" href="https://rubika.ir/Rip_craft_1" target="_blank" rel="noopener">
+      <img src="https://s6.uupload.ir/files/images_prvs5.png" alt="روبیکا" onerror="this.outerHTML='<span class=emb>R</span>'">
+      <div><b>کانال روبیکا</b><span>اخبار، آپدیت‌ها و تخفیف‌ها</span><code>@Rip_craft_1</code></div>
+    </a>
+    <a class="rc rv" href="https://rubika.ir/SupRIPCraft" target="_blank" rel="noopener">
+      <img src="https://s6.uupload.ir/files/images_prvs5.png" alt="روبیکا" onerror="this.outerHTML='<span class=emb>R</span>'">
+      <div><b>پشتیبان روبیکا</b><span>ارتباط مستقیم با پشتیبانی</span><code>@SupRIPCraft</code></div>
+    </a>
+  </div>
+</div></section>
+
+<section id="support"><div class="wrap">
+  <div class="sup rv">
+    <div><span class="pill" style="margin:0">پشتیبانی ۲۴ ساعته</span><h2>مرکز رسمی پشتیبانی</h2>
+      <p>برای هر سوال یا مشکل، در روبیکا به @SupRIPCraft پیام بده.</p>
+      <div class="btns">
+        <a class="b1" href="https://rubika.ir/SupRIPCraft" target="_blank" rel="noopener">پیام به پشتیبان در روبیکا</a>
+        <a class="b2" href="https://rubika.ir/Rip_craft_1" target="_blank" rel="noopener">کانال روبیکا</a>
+      </div>
+    </div>
+    <div class="art"><canvas id="hero-face" width="8" height="8"></canvas></div>
+  </div>
+</div></section>
+
+<footer id="shop">
+  <span class="px" id="launcher">RIP<i>CRAFT</i></span>
+  <span class="java" id="rules">این سرور مخصوص جاوا پلیر هاست</span>
+  <span>ساخته‌شده با ❤ برای جامعه RipCraft © ۲۰۲۶</span>
+</footer>
+
+<script>
+var MODES=[
+["","سروایول","","زنده بمون، منابع جمع کن، پایگاهت رو بساز و قوی‌ترین بازیکن بشو."],
+["","SkyMine","اختصاصی","با یک معدن کوچک در آسمان شروع کن و بزرگ‌ترین امپراطوری معدن‌کاری را بساز."],
+["","SMP","","سرور دوستانه با اقتصاد، تیم‌ها و ساخت‌وسازهای بزرگ."],
+["","پارکور","","مرحله‌ها رو رد کن، رکورد بزن و سرعتت رو به همه نشون بده."],
+["","Practice","","دوئل‌های رنک‌دار برای تقویت مهارت PvP با کیت‌های مختلف."],
+["","Modern Practice","جدید","نسخه‌ی جدید پرکتیس با کیت‌های به‌روز و مبارزه‌های سریع‌تر."]
+];
+var TEAM=[
+["Rip_Xdexter","OWNER","صاحب و بنیان‌گذار سرور. مسئول تصمیم‌های اصلی و مدیریت کلی."],
+["Craft_World","CO OWNER","همراه مالک در مدیریت سرور، تیم و تصمیم‌های مهم."],
+["Mohammed","DEVELOPER","توسعه‌دهنده‌ی سرور و سازنده‌ی پلاگین‌ها و گیم‌مودها."],
+["Firecraft","NETWORK ADMIN","مسئول شبکه و پایداری سرور و اتصال بدون لگ."]
+];
+var LU='https://s6.uupload.ir/files/file_00000000d098820ab5853067dc1bc80d_1c5oy.jpg';
+function LOGO(){return '<img src="'+LU+'" alt="" onerror="this.outerHTML=\'<span class=emb>R</span>\'">'}
+var g=document.getElementById('mg');
+MODES.forEach(function(m){var d=document.createElement('div');d.className='mode rv';
+d.innerHTML='<span class="mi">'+LOGO()+'</span><h3>'+m[1]+(m[2]?'<span class="bd">'+m[2]+'</span>':'')+'</h3><p>'+m[3]+'</p><div class="pl"><span>در حال بازی:</span><b>0</b></div>';g.appendChild(d)});
+function face(c,seed){var x=c.getContext('2d'),h=0;for(var i=0;i<seed.length;i++)h=(h*31+seed.charCodeAt(i))>>>0;
+var skins=['#e0ac84','#c68a62','#f1c9a5','#a8714c'],hairs=['#2b1409','#111','#5a2d0c','#b3122b','#e8e8e8'],shirts=['#b3122b','#222','#3a3a8a','#1c6b3a','#7a1fa2'];
+var sk=skins[h%4],hr=hairs[(h>>3)%5],sh=shirts[(h>>6)%5];
+x.fillStyle=sk;x.fillRect(0,0,8,8);x.fillStyle=hr;x.fillRect(0,0,8,3);x.fillRect(0,3,1,2);x.fillRect(7,3,1,2);
+x.fillStyle='#fff';x.fillRect(1,4,2,1);x.fillRect(5,4,2,1);x.fillStyle='#2a1a4a';x.fillRect(2,4,1,1);x.fillRect(5,4,1,1);
+x.fillStyle='#7a3a2a';x.fillRect(3,6,2,1);x.fillStyle=sh;x.fillRect(0,7,8,1)}
+var t=document.getElementById('tg');
+TEAM.forEach(function(p){var d=document.createElement('div');d.className='stf rv';
+d.innerHTML='<canvas width="8" height="8"></canvas><div><h3>'+p[0]+'</h3><span class="role">'+p[1]+'</span><p>'+p[2]+'</p></div>';
+face(d.querySelector('canvas'),p[0]);t.appendChild(d)});
+face(document.getElementById('hero-face'),'Rip_Xdexter');
+var io=new IntersectionObserver(function(a){a.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);var b=e.target.querySelector('[data-to]');if(b)count(b)}})},{threshold:.15});
+document.querySelectorAll('.rv').forEach(function(e){io.observe(e)});
+function count(b){var to=+b.dataset.to,n=0,st=performance.now();(function f(now){var p=Math.min((now-st)/1400,1);n=Math.round(to*(1-Math.pow(1-p,3)));
+var s=b.dataset.nocomma?String(n):n.toLocaleString('en-US');b.textContent=s+(to>=250&&!b.dataset.nocomma?'+':'');if(p<1)requestAnimationFrame(f)})(st)}
+var cv=document.getElementById('stars'),cx=cv.getContext('2d'),P=[],mx=-999,my=-999;
+function rs(){cv.width=innerWidth;cv.height=innerHeight;P=[];var n=Math.min(90,Math.floor(innerWidth/14));for(var i=0;i<n;i++)P.push({x:Math.random()*cv.width,y:Math.random()*cv.height,r:Math.random()*2+.6,v:Math.random()*.6+.2,d:Math.random()*2-1})}
+rs();addEventListener('resize',rs);addEventListener('pointermove',function(e){mx=e.clientX;my=e.clientY});
+(function a(){cx.clearRect(0,0,cv.width,cv.height);var dark=document.documentElement.getAttribute('data-theme')==='dark';var c=dark?'255,48,69':'212,0,26';
+P.forEach(function(p,i){p.y-=p.v;p.x+=Math.sin((p.y+p.d*90)/60)*.4;if(p.y<-5){p.y=cv.height+5;p.x=Math.random()*cv.width}
+var dx=p.x-mx,dy=p.y-my,dd=Math.sqrt(dx*dx+dy*dy);if(dd<110){p.x+=dx/dd*1.6;p.y+=dy/dd*1.6}
+cx.beginPath();cx.fillStyle='rgba('+c+',.85)';cx.shadowColor='rgb('+c+')';cx.shadowBlur=12;cx.arc(p.x,p.y,p.r,0,6.3);cx.fill();cx.shadowBlur=0;
+for(var j=i+1;j<P.length;j++){var q=P[j],ax=p.x-q.x,ay=p.y-q.y,l=ax*ax+ay*ay;if(l<14000){cx.strokeStyle='rgba('+c+','+(.22*(1-l/14000))+')';cx.beginPath();cx.moveTo(p.x,p.y);cx.lineTo(q.x,q.y);cx.stroke()}}});
+requestAnimationFrame(a)})();
+var R=document.documentElement,bth=document.getElementById('th');
+function T(v){R.setAttribute('data-theme',v);bth.textContent=v==='dark'?'☀':'🌙';try{localStorage.setItem('rc',v)}catch(e){}}
+var sv=null;try{sv=localStorage.getItem('rc')}catch(e){}T(sv||'dark');
+bth.onclick=function(){T(R.getAttribute('data-theme')==='dark'?'light':'dark')};
+
+document.getElementById('cp').onclick=function(){var k=this,v=document.getElementById('ipv').textContent;
+function ok(){k.textContent='کپی شد ✓';setTimeout(function(){k.textContent='کپی آدرس'},1800)}
+try{navigator.clipboard.writeText(v).then(ok,ok)}catch(e){ok()}};
+
+var burger=document.getElementById('burger'),mm=document.getElementById('mobileMenu'),ov=document.getElementById('overlay');
+function closeMenu(){burger.classList.remove('open');mm.classList.remove('open');ov.classList.remove('open')}
+burger.onclick=function(){var isOpen=mm.classList.contains('open');if(isOpen){closeMenu()}else{burger.classList.add('open');mm.classList.add('open');ov.classList.add('open')}};
+ov.onclick=closeMenu;
+mm.querySelectorAll('a').forEach(function(a){a.onclick=closeMenu});
+
+(function(){var el=document.getElementById('online'),n=347;
+function tick(){n+=Math.floor(Math.random()*7)-3;if(n<280)n=280;if(n>420)n=420;el.textContent=n}
+tick();setInterval(tick,4500)})();
+</script>
+</body>
+</html>
