@@ -40,7 +40,6 @@ nav a:hover::after{width:100%}
 .overlay{display:none;position:fixed;inset:0;z-index:54;background:rgba(0,0,0,.6);backdrop-filter:blur(4px);opacity:0;transition:opacity .4s}
 .overlay.open{display:block;opacity:1}
 @media(max-width:860px){nav{display:none}.burger{display:flex}}
-
 .hero{min-height:100svh;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:30px;padding:120px 6% 70px;color:var(--text);background:radial-gradient(ellipse 60% 55% at 75% 30%,var(--glow),transparent 65%),var(--bg);overflow:hidden;transition:background .3s,color .3s}
 .hero h1{font-size:clamp(34px,5.6vw,68px);font-weight:900;line-height:1.45;animation:up .9s both}
 .hero h1 em{font-style:normal;color:var(--red2);text-shadow:0 0 30px var(--glow)}
@@ -55,15 +54,12 @@ nav a:hover::after{width:100%}
 .ipb button:hover{background:var(--red2)}
 @keyframes up{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
 @keyframes bl{50%{opacity:.35}}@keyframes flt{50%{transform:translateY(-8px)}}
-
-/* Static logo showcase */
 .logo-showcase{position:relative;width:min(380px,80vw);aspect-ratio:1;margin:auto;display:grid;place-items:center}
 .logo-showcase::before{content:"";position:absolute;inset:0;border-radius:50%;border:1px solid var(--line);box-shadow:0 0 70px var(--glow),inset 0 0 70px var(--glow);transition:border-color .3s,box-shadow .3s}
 .logo-showcase::after{content:"";position:absolute;inset:14%;border:1px dashed var(--line);border-radius:50%;transition:border-color .3s}
 .logo-core{position:relative;width:46%;aspect-ratio:1;border-radius:50%;overflow:hidden;border:2px solid var(--red2);box-shadow:0 0 60px var(--red);animation:flt 5s ease-in-out infinite;z-index:2;background:var(--card2)}
 .logo-core img{width:100%;height:100%;object-fit:cover;display:block}
 .logo-core .fallback{display:grid;place-items:center;width:100%;height:100%;font-family:'Press Start 2P',monospace;font-size:20px;color:#fff;background:radial-gradient(circle,var(--red),#3a0007);text-shadow:0 0 20px var(--red)}
-
 .wrap{max-width:1140px;margin:auto;padding:90px 6%}
 .pill{display:table;margin:0 auto 16px;padding:5px 22px;border-radius:99px;border:1px solid var(--red2);color:var(--red2);font-weight:800;font-size:14px;background:var(--card);transition:background .3s}
 .hd{text-align:center;margin-bottom:50px}.hd h2{font-size:clamp(28px,4.6vw,46px);font-weight:900}.hd p{color:var(--dim);margin-top:8px}
@@ -216,6 +212,7 @@ var MODES=[
 var TEAM=[
 ["Rip_Xdexter","OWNER","صاحب و بنیان‌گذار سرور. مسئول تصمیم‌های اصلی و مدیریت کلی."],
 ["Craft_World","CO OWNER","همراه مالک در مدیریت سرور، تیم و تصمیم‌های مهم."],
+["Parham_md","MANAGER","مدیر اجرایی سرور و مسئول هماهنگی تیم و رسیدگی به امور روزمره."],
 ["Mohammed","DEVELOPER","توسعه‌دهنده‌ی سرور و سازنده‌ی پلاگین‌ها و گیم‌مودها."],
 ["Firecraft","NETWORK ADMIN","مسئول شبکه و پایداری سرور و اتصال بدون لگ."]
 ];
@@ -252,17 +249,14 @@ var R=document.documentElement,bth=document.getElementById('th');
 function T(v){R.setAttribute('data-theme',v);bth.textContent=v==='dark'?'☀':'🌙';try{localStorage.setItem('rc',v)}catch(e){}}
 var sv=null;try{sv=localStorage.getItem('rc')}catch(e){}T(sv||'dark');
 bth.onclick=function(){T(R.getAttribute('data-theme')==='dark'?'light':'dark')};
-
 document.getElementById('cp').onclick=function(){var k=this,v=document.getElementById('ipv').textContent;
 function ok(){k.textContent='کپی شد ✓';setTimeout(function(){k.textContent='کپی آدرس'},1800)}
 try{navigator.clipboard.writeText(v).then(ok,ok)}catch(e){ok()}};
-
 var burger=document.getElementById('burger'),mm=document.getElementById('mobileMenu'),ov=document.getElementById('overlay');
 function closeMenu(){burger.classList.remove('open');mm.classList.remove('open');ov.classList.remove('open')}
 burger.onclick=function(){var isOpen=mm.classList.contains('open');if(isOpen){closeMenu()}else{burger.classList.add('open');mm.classList.add('open');ov.classList.add('open')}};
 ov.onclick=closeMenu;
 mm.querySelectorAll('a').forEach(function(a){a.onclick=closeMenu});
-
 (function(){var el=document.getElementById('online'),n=347;
 function tick(){n+=Math.floor(Math.random()*7)-3;if(n<280)n=280;if(n>420)n=420;el.textContent=n}
 tick();setInterval(tick,4500)})();
