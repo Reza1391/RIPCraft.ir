@@ -46,7 +46,7 @@ nav a:hover::after{width:100%}
 .hero p.s{margin-top:14px;color:var(--dim);max-width:520px;font-size:17px;animation:up .9s .15s both}
 .card-ip{margin-top:28px;max-width:470px;padding:22px;border:1px solid var(--line);border-radius:18px;background:var(--card);animation:up .9s .3s both;transition:background .3s,border-color .3s}
 .on{display:flex;align-items:center;gap:10px;font-weight:800;margin-bottom:14px}
-.dot{width:10px;height:10px;border-radius:50%;background:#18d46c;box-shadow:0 0 12px #18d46c;animation:bl 1.6s infinite}
+.dot{width:10px;height:10px;border-radius:50%;background:#ff3b3b;box-shadow:0 0 12px #ff3b3b;animation:bl 1.6s infinite}
 .on b{color:var(--red2);font-size:22px}
 .ipb{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 16px;border-radius:12px;background:var(--card2);border:1px solid var(--line);direction:ltr;transition:background .3s,border-color .3s}
 .ipb .px{font-size:12px;color:var(--text);word-break:break-all}
@@ -108,10 +108,38 @@ footer .px{display:block;font-size:12px;margin-bottom:10px;color:var(--text);let
 .beam{position:fixed;left:0;right:0;height:140px;z-index:1;pointer-events:none;background:linear-gradient(transparent,var(--glow),transparent);opacity:.18;animation:sc 9s linear infinite;transition:background .3s}
 @keyframes sc{from{top:-160px}to{top:100%}}
 .emb{display:inline-grid;place-items:center;width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,var(--red),#3a0007);color:#fff;font-family:'Press Start 2P',monospace;font-size:16px;border:1px solid var(--red2);box-shadow:0 0 18px var(--glow)}
+
+@property --a{syntax:"<angle>";initial-value:0deg;inherits:false}
+#prog{position:fixed;top:0;right:0;height:3px;width:0;z-index:70;background:linear-gradient(270deg,var(--red2),#ffb347);box-shadow:0 0 12px var(--red2)}
+#cur{position:fixed;left:0;top:0;width:420px;height:420px;margin:-210px 0 0 -210px;border-radius:50%;pointer-events:none;z-index:1;background:radial-gradient(circle,var(--glow),transparent 65%);opacity:0;transition:opacity .5s;will-change:transform}
+.glitch{position:relative;display:inline-block}
+.glitch::before,.glitch::after{content:attr(data-t);position:absolute;inset:0;pointer-events:none;clip-path:inset(0 0 100% 0)}
+.glitch::before{color:#00e5ff;animation:g1 3.4s infinite steps(1)}
+.glitch::after{color:#ffb347;animation:g2 3.4s infinite steps(1)}
+@keyframes g1{0%,86%,100%{clip-path:inset(0 0 100% 0)}88%{clip-path:inset(8% 0 62% 0);transform:translate(-5px,0)}92%{clip-path:inset(60% 0 8% 0);transform:translate(4px,0)}}
+@keyframes g2{0%,87%,100%{clip-path:inset(0 0 100% 0)}90%{clip-path:inset(45% 0 30% 0);transform:translate(5px,0)}94%{clip-path:inset(10% 0 70% 0);transform:translate(-4px,0)}}
+.orb{position:absolute;inset:5%;border-radius:50%;animation:spin 12s linear infinite;z-index:3;pointer-events:none}
+.orb::before{content:"";position:absolute;top:-6px;left:50%;width:12px;height:12px;margin-left:-6px;border-radius:2px;background:var(--red2);box-shadow:0 0 20px 5px var(--red2);transform:rotate(45deg)}
+.orb.o2{inset:19%;animation-duration:8s;animation-direction:reverse}.orb.o2::before{width:8px;height:8px;margin-left:-4px;top:-4px;background:#ffb347;box-shadow:0 0 16px 4px #ffb347}
+@keyframes spin{to{transform:rotate(360deg)}}
+.card-ip{position:relative}
+.card-ip::before{content:"";position:absolute;inset:-1px;border-radius:19px;padding:2px;background:conic-gradient(from var(--a),transparent 0 62%,var(--red2) 82%,#ffb347 90%,transparent);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:rot 4s linear infinite;pointer-events:none}
+@keyframes rot{to{--a:360deg}}
+.hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:140px;background:linear-gradient(transparent,var(--glow));opacity:.5;pointer-events:none}
+.mode,.stf,.rc,.st{position:relative;overflow:hidden;--mx:50%;--my:50%}
+.mode::after,.stf::after,.rc::after,.st::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(280px circle at var(--mx) var(--my),var(--glow),transparent 70%);opacity:0;transition:opacity .3s}
+.mode:hover::after,.stf:hover::after,.rc:hover::after,.st:hover::after{opacity:1}
+.mode.in,.stf.in,.rc.in,.st.in{transition:opacity .7s,transform .15s ease-out,border-color .25s,box-shadow .25s}
+.tick{position:relative;z-index:2;overflow:hidden;direction:ltr;border-block:1px solid var(--line);background:color-mix(in srgb,var(--card) 85%,transparent);padding:14px 0}
+.trk{display:flex;width:max-content;animation:mq 34s linear infinite}
+.trk span{margin-right:44px;font-weight:800;font-size:15px;color:var(--dim);white-space:nowrap}.trk span::before{content:"◆";color:var(--red2);margin-right:44px;text-shadow:0 0 10px var(--red2)}
+@keyframes mq{to{transform:translateX(-50%)}}
+.hd h2{background:linear-gradient(90deg,var(--text),var(--red2),var(--text));background-size:220% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:sh 6s linear infinite}
+@keyframes sh{to{background-position:-220% 0}}
 </style>
 </head>
 <body>
-<canvas id="stars"></canvas><div class="bl a"></div><div class="bl b"></div><div class="beam"></div>
+<div id="prog"></div><div id="cur"></div><canvas id="stars"></canvas><div class="bl a"></div><div class="bl b"></div><div class="beam"></div>
 
 <header>
   <a href="#top" class="lg px">
@@ -136,14 +164,15 @@ footer .px{display:block;font-size:12px;margin-bottom:10px;color:var(--text);let
 
 <section class="hero" id="top">
   <div>
-    <h1>شبت رو با رفقات توی <em>RipCraft</em> بساز</h1>
+    <h1>شبت رو با رفقات توی <em class="glitch" data-t="RipCraft">RipCraft</em> بساز</h1>
     <p class="s">سرور ماینکرفت با گیم مودهای متنوع، تیم قوی و جامعه‌ای که تا پیروزی کنارته.</p>
     <div class="card-ip">
-      <div class="on"><span class="dot"></span>بازیکنان آنلاین: <b id="online">0</b></div>
+      <div class="on"><span class="dot"></span>سرور آفلاین است: <b id="online">0</b></div>
       <div class="ipb"><span class="px" id="ipv">PLAY.RIPCRAFT.NET</span><button id="cp">کپی آدرس</button></div>
     </div>
   </div>
   <div class="logo-showcase">
+    <div class="orb"></div><div class="orb o2"></div>
     <div class="logo-core">
       <img src="https://s6.uupload.ir/files/file_00000000d098820ab5853067dc1bc80d_1c5oy.jpg" alt="RipCraft Logo" onerror="this.outerHTML='<span class=fallback>R</span>'">
     </div>
@@ -151,10 +180,10 @@ footer .px{display:block;font-size:12px;margin-bottom:10px;color:var(--text);let
 </section>
 
 <section><div class="wrap"><div class="stats">
-  <div class="st rv"><div class="i">❤️</div><b data-to="26400">0</b><span>دنبال‌کننده‌ها</span></div>
+  <div class="st rv"><div class="i">❤️</div><b data-to="0">0</b><span>دنبال‌کننده‌ها</span></div>
   <div class="st rv"><div class="i">📅</div><b data-to="1405" data-nocomma="1">0</b><span>سال شروع فعالیت</span></div>
-  <div class="st rv"><div class="i">👥</div><b data-to="250">0</b><span>رکورد همزمان</span></div>
-  <div class="st rv"><div class="i">👤</div><b data-to="25000">0</b><span>بازیکنان ثبت‌نام‌شده</span></div>
+  <div class="st rv"><div class="i">👥</div><b data-to="0">0</b><span>رکورد همزمان</span></div>
+  <div class="st rv"><div class="i">👤</div><b data-to="0">0</b><span>بازیکنان ثبت‌نام‌شده</span></div>
 </div></div></section>
 
 <section id="modes"><div class="wrap">
@@ -213,7 +242,7 @@ var TEAM=[
 ["Rip_Xdexter","OWNER","صاحب و بنیان‌گذار سرور. مسئول تصمیم‌های اصلی و مدیریت کلی."],
 ["Craft_World","CO OWNER","همراه مالک در مدیریت سرور، تیم و تصمیم‌های مهم."],
 ["Parham_md","MANAGER","مدیر اجرایی سرور و مسئول هماهنگی تیم و رسیدگی به امور روزمره."],
-["Mohammed","DEVELOPER","توسعه‌دهنده‌ی سرور و سازنده‌ی پلاگین‌ها و گیم‌مودها."],
+["mohmmd77","DEVELOPER","توسعه‌دهنده‌ی سرور و سازنده‌ی پلاگین‌ها و گیم‌مودها."],
 ["Firecraft","NETWORK ADMIN","مسئول شبکه و پایداری سرور و اتصال بدون لگ."]
 ];
 var LU='https://s6.uupload.ir/files/file_00000000d098820ab5853067dc1bc80d_1c5oy.jpg';
@@ -257,9 +286,17 @@ function closeMenu(){burger.classList.remove('open');mm.classList.remove('open')
 burger.onclick=function(){var isOpen=mm.classList.contains('open');if(isOpen){closeMenu()}else{burger.classList.add('open');mm.classList.add('open');ov.classList.add('open')}};
 ov.onclick=closeMenu;
 mm.querySelectorAll('a').forEach(function(a){a.onclick=closeMenu});
-(function(){var el=document.getElementById('online'),n=347;
-function tick(){n+=Math.floor(Math.random()*7)-3;if(n<280)n=280;if(n>420)n=420;el.textContent=n}
-tick();setInterval(tick,4500)})();
+
+var tk=document.createElement('div');tk.className='tick';var tr=document.createElement('div');tr.className='trk';
+var tn=MODES.map(function(m){return '<span>'+m[1]+'</span>'}).join('');tr.innerHTML=tn+tn+tn+tn;tk.appendChild(tr);
+var hs=document.getElementById('top');hs.parentNode.insertBefore(tk,hs.nextSibling);
+var pg=document.getElementById('prog'),cu=document.getElementById('cur');
+addEventListener('scroll',function(){var h=document.documentElement;pg.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%'},{passive:true});
+addEventListener('pointermove',function(e){cu.style.opacity=1;cu.style.transform='translate('+e.clientX+'px,'+e.clientY+'px)';
+var c=e.target.closest&&e.target.closest('.mode,.stf,.rc,.st');if(!c)return;var r=c.getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-r.top;
+c.style.setProperty('--mx',x+'px');c.style.setProperty('--my',y+'px');
+if(c.classList.contains('mode')&&matchMedia('(hover:hover)').matches){c.style.transform='perspective(800px) rotateX('+((y/r.height-.5)*-9)+'deg) rotateY('+((x/r.width-.5)*9)+'deg) translateY(-8px)'}});
+document.addEventListener('pointerout',function(e){var c=e.target.closest&&e.target.closest('.mode');if(c&&!c.contains(e.relatedTarget))c.style.transform=''});
 </script>
 </body>
 </html>
